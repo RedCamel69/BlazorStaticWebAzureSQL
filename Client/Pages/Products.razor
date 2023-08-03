@@ -31,7 +31,14 @@
 
     protected override async Task OnInitializedAsync()
     {
-        products = await http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+        try
+        {
+            products = await http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+        }
+        catch(Exception ex)
+        {
+            var e = ex;
+        }
     }
 
     private void AddNewProduct()
